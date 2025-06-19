@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="dark bg-gray-900 text-gray-200">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fake Engagement Watchlist</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Hero Section -->
+  <header class="py-12 text-center bg-gray-800 shadow-md">
+    <h1 class="text-3xl md:text-4xl font-bold mb-4">🚨 Fake Engagement Watchlist</h1>
+    <p class="text-gray-400 max-w-md mx-auto">Help the community by identifying and reporting suspicious Twitter accounts showing signs of fake engagement.</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-700 text-gray-300">
+            <th class="py-3 px-4">Username</th>
+            <th class="py-3 px-4">Bot Score</th>
+            <th class="py-3 px-4">Red Flags</th>
+            <th class="py-3 px-4">Action</th>
+          </tr>
+        </thead>
+        <tbody id="accountsTable" class="divide-y divide-gray-700">
+          <!-- JS will inject rows here -->
+        </tbody>
+      </table>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-8 text-green-400 text-lg">
+        No suspicious accounts detected 🎉
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center text-gray-600 text-sm">
+    Built for transparency. Stay vigilant. 🚀
+  </footer>
+
+<script>
+fetch('/api/accounts')
+  .then(res => res.json())
+  .then(data => {
+    const tableBody = document.getElementById('accountsTable');
+    const emptyState = document.getElementById('emptyState');
+
+    if (data.length === 0) {
+      emptyState.classList.remove('hidden');
+    } else {
+      data.forEach(account => {
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-gray-800 transition';
+
+        // Color based on botScore
+        let scoreColor = 'bg-green-600';
+        if (account.botScore >= 80) scoreColor = 'bg-red-600';
+        else if (account.botScore >= 50) scoreColor = 'bg-yellow-500';
+
+        row.innerHTML = `
+          <td class="py-3 px-4">@${account.username}</td>
+          <td class="py-3 px-4">
+            <span class="${scoreColor} text-white text-sm px-2 py-1 rounded-full">${account.botScore}%</span>
+          </td>
+          <td class="py-3 px-4 text-sm text-gray-400">${account.redFlags}</td>
+          <td class="py-3 px-4">
+            <a href="https://twitter.com/report" target="_blank" class="text-blue-400 hover:underline">Report</a>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+  })
+  .catch(err => console.error('Error fetching accounts:', err));
+</script>
+
+</body>
+</html>
