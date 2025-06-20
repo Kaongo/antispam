@@ -5,12 +5,12 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = 3003;
+const PORT = 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DB_FILE = path.join(__dirname, 'public','db.json');
+const DB_FILE = path.join(__dirname, '..', 'data','db.json');
 const REPORTS_FILE = path.join(__dirname, 'reports.json');
 
 app.use(cors());
