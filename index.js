@@ -10,7 +10,7 @@ const PORT = 3003;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DB_FILE = path.join(__dirname, 'db.json');
+const DB_FILE = path.join(__dirname, 'public','db.json');
 const REPORTS_FILE = path.join(__dirname, 'reports.json');
 
 app.use(cors());

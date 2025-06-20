@@ -1,0 +1,28 @@
+[
+  {
+    "username": "gov bloger",
+    "followers": 1500,
+    "redFlags": "No profile pic, 0 followers, following 5000"
+  },
+  {
+    "username": "enemy",
+    "followers": 623,
+    "redFlags": "Generic bio, likes thousands of random posts"
+  }
+  ,
+  {
+    "username": "fake influencer",
+    "followers": 90,
+    "redFlags": "Posts only promotional content, no engagement on posts"
+  },
+  {
+    "username": "spammy account",
+    "followers": 95,
+    "redFlags": "Posts repetitive comments, follows and unfollows frequently"
+  },
+  {
+    "username": "clickbait king",
+    "followers": 80,
+    "redFlags": "Uses clickbait titles, no real content in posts"
+  }
+]
