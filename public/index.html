@@ -26,7 +26,6 @@
     </nav>
   </div>
 </header>
-  
  
 
   <!-- Main Content -->
@@ -38,7 +37,7 @@
         <thead>
           <tr class="bg-gray-700 text-gray-300">
             <th class="py-3 px-4">Username</th>
-            <th class="py-3 px-4">Bot Score</th>
+            <th class="py-3 px-4">Number of followers</th>
             <th class="py-3 px-4">Red Flags</th>
             <th class="py-3 px-4">Action</th>
           </tr>
@@ -88,15 +87,15 @@ fetch('/api/accounts')
         const row = document.createElement('tr');
         row.className = 'hover:bg-gray-800 transition';
 
-        // Color based on botScore
+        // Color based on followers
         let scoreColor = 'bg-green-600';
-        if (account.botScore >= 80) scoreColor = 'bg-red-600';
-        else if (account.botScore >= 50) scoreColor = 'bg-yellow-500';
+        if (account.followers >= 80) scoreColor = 'bg-red-600';
+        else if (account.followers >= 50) scoreColor = 'bg-yellow-500';
 
         row.innerHTML = `
           <td class="py-3 px-4">@${account.username}</td>
           <td class="py-3 px-4">
-            <span class="${scoreColor} text-white text-sm px-2 py-1 rounded-full">${account.botScore}%</span>
+            <span class="${scoreColor} text-white text-sm px-2 py-1 rounded-full">${account.followers} </span>
           </td>
           <td class="py-3 px-4 text-sm text-gray-400">${account.redFlags}</td>
           <td class="py-3 px-4">
